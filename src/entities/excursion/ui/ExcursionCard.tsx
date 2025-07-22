@@ -42,7 +42,7 @@ export const ExcursionCard = (props: ExcursionCardProps) => {
   return (
     <Card
       className={cn(
-        'w-full gap-0 p-0 transition-[box-shadow,scale] duration-300 ease-in-out hover:scale-[101%] hover:shadow-md',
+        'w-full gap-0 p-0 transition-[box-shadow] duration-300 ease-in-out hover:shadow-lg',
         className
       )}
     >
