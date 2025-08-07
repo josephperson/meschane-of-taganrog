@@ -21,9 +21,10 @@ export const NavigationMenuGroup = (props: NavGroupProps) => {
           <Link href={href} legacyBehavior passHref>
             <NavigationMenuLink
               className={cn(
+                'flex h-16 items-center justify-center',
                 isScrolled
                   ? 'font-semibold text-foreground-secondary'
-                  : "after:ease after:absolute after:-bottom-8 after:left-0 after:h-0.25 after:w-0 after:bg-primary after:transition-[width] after:duration-600 after:content-[''] hover:after:w-full"
+                  : "after:absolute after:bottom-[-1px] after:left-0 after:h-0.25 after:w-0 after:bg-primary after:transition-all after:duration-600 after:content-[''] hover:after:w-full"
               )}
             >
               {label}
