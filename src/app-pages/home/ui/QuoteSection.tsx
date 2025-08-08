@@ -25,9 +25,9 @@ export const QuoteSection = () => {
           alt="Мещанин"
           id="quote-section"
         />
-        <Image className="absolute top-[50%] right-0" src={Quotes} alt="Кавычки" />
+        <Image className="absolute right-0 bottom-[40%]" src={Quotes} alt="Кавычки" />
       </div>
-      <div className="flex max-w-[700px] flex-col justify-center gap-4 px-16">
+      <div className="flex max-w-[700px] flex-col justify-center gap-8 px-16">
         <SectionHeading>
           <HeadingSubtitle withDash>Слово мещанину</HeadingSubtitle>
           <HeadingTitle>
@@ -42,7 +42,7 @@ export const QuoteSection = () => {
           готовности мещан к переменам и защите своих прав, причем они не боялись прибегать к
           активным политическим действиям
         </p>
-        <div className="mt-4">
+        <div>
           <h3 className="text-lg font-medium uppercase">Смирнов Иван Николаевич</h3>
           <span className="text-foreground-muted">Кандидат исторических наук, доцент</span>
         </div>
