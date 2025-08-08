@@ -3,7 +3,15 @@
 import Image, { type StaticImageData } from 'next/image';
 import { useState } from 'react';
 
-import { Container, HeadingTitle, ImageViewer, Section } from '@/shared/ui';
+import {
+  Container,
+  HeadingHighlight,
+  HeadingSubtitle,
+  HeadingTitle,
+  ImageViewer,
+  Section,
+  SectionHeading,
+} from '@/shared/ui';
 
 import meschane1 from '../assets/images/meschane-1.png';
 import meschane2 from '../assets/images/meschane-2.png';
@@ -23,9 +31,15 @@ export const PhotoSection = () => {
   return (
     <Section className="flex bg-background-secondary" id="photo-section">
       <Container className="flex gap-16 py-16">
-        <HeadingTitle className="text-center">
-          Мещане <span className="whitespace-nowrap">г. Таганрога</span>
-        </HeadingTitle>
+        <SectionHeading>
+          <HeadingSubtitle withDash>Фото на память</HeadingSubtitle>
+          <HeadingTitle>
+            Мещане <br />
+            <HeadingHighlight>
+              <span className="whitespace-nowrap">г. Таганрога</span>
+            </HeadingHighlight>
+          </HeadingTitle>
+        </SectionHeading>
         <div className="flex gap-8">
           {MESCHANE_IMAGES.map((image) => (
             <Image
