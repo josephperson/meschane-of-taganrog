@@ -13,9 +13,9 @@ import {
   SectionHeading,
 } from '@/shared/ui';
 
-import meschane1 from '../assets/images/meschane-1.png';
-import meschane2 from '../assets/images/meschane-2.png';
-import meschane3 from '../assets/images/meschane-3.png';
+import meschane1 from '../assets/images/meschane-1.jpg';
+import meschane2 from '../assets/images/meschane-2.jpg';
+import meschane3 from '../assets/images/meschane-3.jpg';
 
 const MESCHANE_IMAGES = [meschane1, meschane2, meschane3];
 
@@ -42,13 +42,14 @@ export const PhotoSection = () => {
         </SectionHeading>
         <div className="flex gap-8">
           {MESCHANE_IMAGES.map((image) => (
-            <Image
-              key={image.src}
-              className="cursor-pointer rounded-xl transition-transform hover:scale-105"
-              src={image}
-              alt="Фотография мещан"
-              onClick={() => handleImageClick(image)}
-            />
+            <div className="basis-1/3" key={image.src}>
+              <Image
+                className="aspect-2/3 size-full cursor-pointer rounded-xl object-cover transition-transform hover:scale-105"
+                src={image}
+                alt="Фотография мещан"
+                onClick={() => handleImageClick(image)}
+              />
+            </div>
           ))}
         </div>
       </Container>
