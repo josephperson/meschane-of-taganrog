@@ -123,7 +123,7 @@ export const DialogDescription = (props: ComponentProps<typeof DialogPrimitive.D
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-foreground-muted text-sm', className)}
       {...restProps}
     />
   );

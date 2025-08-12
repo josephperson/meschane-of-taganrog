@@ -1,14 +1,15 @@
 'use client';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 
+import { PhotoViewer } from '@/features/photo-viewing';
+import { type Photo } from '@/entities/photo';
 import {
   Container,
   HeadingHighlight,
   HeadingSubtitle,
   HeadingTitle,
-  ImageViewer,
   Section,
   SectionHeading,
 } from '@/shared/ui';
@@ -17,14 +18,33 @@ import meschane1 from '../assets/images/meschane-1.jpg';
 import meschane2 from '../assets/images/meschane-2.jpg';
 import meschane3 from '../assets/images/meschane-3.jpg';
 
-const MESCHANE_IMAGES = [meschane1, meschane2, meschane3];
+const MESCHANE_PHOTOS: Photo[] = [
+  {
+    image: meschane1,
+    title: 'Семья мещан города Таганрога',
+    years: [1898, 1902],
+    author: 'И.К. Майков',
+  },
+  {
+    image: meschane2,
+    title: 'Мещане Таганрога',
+    years: [1891, 1898],
+    author: 'С.С. Исакович',
+  },
+  {
+    image: meschane3,
+    title: 'Портрет мещанина',
+    years: [1902, 1909],
+    author: 'В. Петрыковский',
+  },
+];
 
 export const PhotoSection = () => {
-  const [selectedImage, setSelectedImage] = useState<StaticImageData | string>('');
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [openViewer, setOpenViewer] = useState<boolean>(false);
 
-  const handleImageClick = (image: StaticImageData) => {
-    setSelectedImage(image);
+  const handlePhotoClick = (photo: Photo) => {
+    setSelectedPhoto(photo);
     setOpenViewer(true);
   };
 
@@ -41,24 +61,29 @@ export const PhotoSection = () => {
           </HeadingTitle>
         </SectionHeading>
         <div className="flex gap-8">
-          {MESCHANE_IMAGES.map((image) => (
-            <div className="basis-1/3" key={image.src}>
-              <Image
-                className="aspect-2/3 size-full cursor-pointer rounded-xl object-cover transition-transform hover:scale-105"
-                src={image}
-                alt="Фотография мещан"
-                onClick={() => handleImageClick(image)}
-              />
-            </div>
-          ))}
+          {MESCHANE_PHOTOS.map((photo) => {
+            const { image } = photo;
+            return (
+              <div className="basis-1/3" key={image.src}>
+                <Image
+                  className="aspect-2/3 size-full cursor-pointer rounded-xl object-cover object-bottom transition-transform hover:scale-105"
+                  src={image}
+                  alt="Фотография мещан"
+                  onClick={() => handlePhotoClick(photo)}
+                />
+              </div>
+            );
+          })}
         </div>
       </Container>
-      <ImageViewer
-        open={openViewer}
-        onOpenChange={setOpenViewer}
-        image={selectedImage}
-        alt="Увеличенная фотография мещан"
-      />
+      {selectedPhoto && (
+        <PhotoViewer
+          open={openViewer}
+          onOpenChange={setOpenViewer}
+          photo={selectedPhoto}
+          alt="Увеличенная фотография мещан"
+        />
+      )}
     </Section>
   );
 };
