@@ -10,7 +10,13 @@ export const HeadingSubtitle = (props: SectionSubtitleProps) => {
   const { children, className, withDash = false } = props;
 
   return (
-    <div className={cn('flex items-center gap-4', !withDash && 'justify-center', className)}>
+    <div
+      className={cn(
+        'flex items-center gap-2',
+        !withDash && 'justify-center',
+        className
+      )}
+    >
       {withDash && <div className="h-px max-w-[45px] flex-1 bg-foreground-muted/50"></div>}
       <span className="text-foreground-muted">{children}</span>
     </div>

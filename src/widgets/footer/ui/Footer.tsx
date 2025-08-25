@@ -26,15 +26,15 @@ export const Footer = () => {
         </SectionHeading>
         <div className="flex flex-wrap gap-x-8 gap-y-4 font-semibold text-foreground-secondary uppercase">
           <p>
-            Телефон: <span className="font-light text-primary">(8634) 61-14-66</span>
+            Телефон: <span className="font-normal text-primary">(8634) 61-14-66</span>
           </p>
           <p>
             Адрес:
-            <span className="font-light text-primary"> г. Таганрог, ул. Октябрьская, 9</span>
+            <span className="font-normal text-primary"> г. Таганрог, ул. Октябрьская, 9</span>
           </p>
-          <p>
-            e-mail:
-            <span className="font-light text-primary"> tgliamz.muzei@yandex.ru</span>
+          <p className="w-full">
+            почта:
+            <span className="font-normal text-primary"> tgliamz.muzei@yandex.ru</span>
           </p>
         </div>
         <InlineConsultationForm />

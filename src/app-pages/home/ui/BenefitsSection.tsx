@@ -47,9 +47,7 @@ export const BenefitsSection = () => {
         <SectionHeading>
           <HeadingSubtitle>Почему стоит попробовать</HeadingSubtitle>
           <HeadingTitle>
-            Иммер<HeadingHighlight>с</HeadingHighlight>ивные эк
-            <HeadingHighlight>с</HeadingHighlight>кур
-            <HeadingHighlight>с</HeadingHighlight>ии
+            <HeadingHighlight>Иммерсивные</HeadingHighlight> экскурсии
           </HeadingTitle>
         </SectionHeading>
         <div className="flex gap-6">
