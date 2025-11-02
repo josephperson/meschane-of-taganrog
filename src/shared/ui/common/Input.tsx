@@ -18,7 +18,10 @@ export const inputVariants = cva(
   }
 );
 
-type InputProps = {} & ComponentProps<'input'> & VariantProps<typeof inputVariants>;
+type InputProps = {
+  'data-error'?: boolean | string;
+} & ComponentProps<'input'> &
+  VariantProps<typeof inputVariants>;
 
 export const Input = (props: InputProps) => {
   const { className, bordered, ...restProps } = props;
