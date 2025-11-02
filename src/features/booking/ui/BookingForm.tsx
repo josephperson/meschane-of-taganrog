@@ -14,7 +14,7 @@ import {
 import { useBookingForm } from '../lib/hooks/useBookingForm';
 
 export const BookingForm = () => {
-  const { form, onSubmit } = useBookingForm();
+  const { form, onSubmit, isLoading } = useBookingForm();
 
   return (
     <Form {...form}>
@@ -57,7 +57,9 @@ export const BookingForm = () => {
             )}
           />
         </div>
-        <Button variant="outline">Отправить</Button>
+        <Button variant="outline" disabled={isLoading}>
+          {isLoading ? 'Отправка...' : 'Отправить'}
+        </Button>
       </form>
     </Form>
   );

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -11,6 +11,7 @@ import { type BookingForm } from '../../model/types';
 
 export const useBookingForm = () => {
   const { formValues, setFormValues, resetFormValues, setOpenDialog } = useBookingStore();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const form = useForm<BookingForm>({
     resolver: zodResolver(BookingFormSchema),
@@ -28,32 +29,43 @@ export const useBookingForm = () => {
   });
 
   const onSubmit = async (data: BookingForm) => {
-    const response = await createBooking(data);
+    setIsLoading(true);
+    
+    try {
+      const response = await createBooking(data);
 
-    if (response.ok) {
-      resetFormValues();
-      setOpenDialog(false);
-      toast.success('Заявка успешно отправлена!', {
-        description: 'Мы свяжемся с вами в течение дня',
+      if (response.ok) {
+        resetFormValues();
+        setOpenDialog(false);
+        toast.success('Заявка успешно отправлена!', {
+          description: 'Мы свяжемся с вами в течение дня',
+          duration: 10000,
+          position: 'bottom-center',
+          closeButton: true,
+        });
+        return;
+      }
+
+      if (response.field) {
+        form.setError(response.field, {
+          type: 'server',
+          message: response.message,
+        });
+        return;
+      }
+
+      toast.error('Ошибка', {
+        description: response.message,
         duration: 10000,
-        position: 'bottom-center',
-        closeButton: true,
       });
-      return;
-    }
-
-    if (response.field) {
-      form.setError(response.field, {
-        type: 'server',
-        message: response.message,
+    } catch {
+      toast.error('Ошибка', {
+        description: 'Произошла неожиданная ошибка',
+        duration: 10000,
       });
-      return;
+    } finally {
+      setIsLoading(false);
     }
-
-    toast.error('Ошибка', {
-      description: response.message,
-      duration: 10000,
-    });
   };
 
   useEffect(() => {
@@ -67,5 +79,6 @@ export const useBookingForm = () => {
   return {
     form,
     onSubmit,
+    isLoading
   };
 };
